@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>todoリスト</title>
+</head>
+<style>
+    #app ul {
+        list-style: none;
+    }
+    #app li > span.done {
+        text-decoration: line-through;
+    }
+</style>
+<body>
+    <div id="app">
+        <h2>TODOリスト</h2>
+        <form v-on:submit.prevent>
+            <input type="text" v-model="newItem">
+            <button v-on:click="addItem">送信</button>
+        </form>
+        <ul>
+            <li v-for="(todo,index) in todos">
+                <input type="checkbox" v-model="todo.isDone">
+                <span v-bind:class="{done: todo.isDone}">{{todo.item}}</span>
+                <button v-on:click="deleteItem(index)">Delete</button>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="todo.js"></script>
+</body>
+</html>
